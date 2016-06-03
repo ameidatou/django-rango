@@ -1,0 +1,9 @@
+{% if cat_list %}
+<ul>
+    {% for c in cat_list %}
+        <li {% if c == act_act %}class="active"{% endif %}><a href="{% url 'category' c.slug %}">{{ c.name }}</a></li>
+    {% endfor %}
+</ul>
+{% else %}
+<ul><li><strong>There are no category present</strong></li></ul>
+{% endif%}

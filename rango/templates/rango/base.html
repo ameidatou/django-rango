@@ -1,0 +1,206 @@
+{% load staticfiles %}<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <!-- <link rel="icon" href="http://getbootstrap.com/favicon.ico"> -->
+
+        <title>Rango - {% block block_title %}How to Tango with Django!{% endblock %}</title>
+
+        <!-- Bootstrap core CSS -->
+        <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+
+        <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+        <!-- <link href="http://getbootstrap.com/assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet"> -->
+
+        <!-- Custom styles for this template -->
+        <!-- <link href="http://getbootstrap.com/examples/dashboard/dashboard.css" rel="stylesheet"> -->
+
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+          <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+          <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+        <style>
+        /*
+            body {
+                font-family: Arial, sans-serif;
+            }
+            nav ul {
+                margin: 0;
+                padding: 0;
+                background-color: #333;
+            }
+            nav li {
+                display: inline;
+            }
+            nav li a {
+                text-decoration: none;
+                display: inline-block;
+                color: white;
+                padding: 14px 16px;
+            }
+            li a:hover {
+                background-color: #111;
+            }
+            aside {
+                max-width: 25%;
+                position: fixed;
+                height: 100%;
+            }
+            aside li a {
+                text-decoration: none;
+                display: block;
+                color: white;
+                padding: 14px 0px;
+            }
+            aside ul {
+                list-style-type: none;
+                background-color: #333;
+                padding: 0;
+                margin: 0;
+            }
+            section {
+                margin-left: 25%;
+                padding: 1px 16px;
+            }
+            /*nav ul {
+                list-style-type: none;
+                margin: 0;
+                padding: 0;
+                background-color: #f1f1f1;
+                width: 100%;
+                overflow: hidden;
+            }
+            nav li {
+                float: left;
+            }
+            nav li a {
+                display: block;
+                color: #000;
+                text-align: center;
+                padding: 7px 8px;
+                text-decoration: none;
+            }
+            nav li a:hover {
+                background-color: #555;
+                color: yellow;
+            }
+            .active {
+                background-color: #4CAF50;
+                color: white;
+            }*/
+            /*nav ul li {
+                display: inline-block;
+            }
+            section {
+                float: left;
+            }
+            header,footer,section,article {
+                border:1px solid grey;
+                margin:5px;margin-bottom:15px;padding:8px;
+                background-color:white;
+            }
+            header,footer, nav {
+                color:white;background-color:#444;margin-bottom:5px;
+            }
+            section {
+                background-color:#ddd;
+            }
+            nav ul  {
+                margin:0;padding:0;
+            }
+            nav ul li {
+                display:inline-block;margin:2px;
+            }
+            nav a:link {
+                color: yellow;
+            }
+
+            nav a:visited {
+                color: yellow;
+            }
+
+            a:hover {
+                color: hotpink;
+            }
+
+            a:active {
+                color: blue;
+            }*/
+        </style>
+
+    </head>
+
+    <body>
+        <header>
+            <h1>Tango with Rango</h1>
+        </header>
+
+        <nav>
+            <ul>
+                {% if user.is_authenticated %}
+                    <li><a href="{% url 'restricted' %}">Restricted Page</a></li>
+                    <li style="float: right;"><a href="{% url 'logout' %}">Logout</a></li>
+                    <li><a href="{% url 'add_category' %}">New Category</a></li>
+                {% else %}
+                    <li style="float: right;"><a href="{% url 'login' %}">Login</a></li>
+                    <li><a href="{% url 'register' %}">Register</a></li>
+                {% endif %}
+                <li ><a href="{% url 'about' %}">About</a></li>
+                <li><a href="{% url 'index' %}">Home</a></li>
+            </ul>
+        </nav>
+
+        <!--<aside>
+            {% block side_block %}This is side_block's default content.{% endblock %}
+        </aside>-->
+        <ul class="nav nav-list">
+                <li class="nav-header">Find a Category</li>
+                <form>
+                <label></label>
+                <li><input  class="search-query span10" type="text" name="suggestion" value="" id="suggestion" /></li>
+                </form>
+        </ul>
+
+        <div id="cats">
+        </div>
+
+        <section>
+            {% block body_block %}This is body_block's default content.{% endblock %}
+        </section>
+
+        <footer>
+            <nav>
+                <ul>
+                    {% if user.is_authenticated %}
+                        <li><a href="{% url 'restricted' %}">Restricted Page</a></li>
+                        <li><a href="{% url 'logout' %}">Logout</a></li>
+                        <li><a href="{% url 'add_category' %}">New Category</a></li>
+                    {% else %}
+                        <li><a href="{% url 'login' %}">Login</a></li>
+                        <li><a href="{% url 'register' %}">Register</a></li>
+                    {% endif %}
+                    <li><a href="{% url 'about' %}">About</a></li>
+                    <li><a href="{% url 'index' %}">Home</a></li>
+                    <li><a href="www.google.com">Home1</a></li>
+                </ul>
+            </nav>
+        </footer>
+
+        <!-- Bootstrap core JavaScript
+        ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script src="http://getbootstrap.com/dist/js/bootstrap.min.js"></script>
+        <script src="{% static "rango/js/rango-jquery.js" %}"></script>
+        <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+        <!-- <script src="http://getbootstrap.com/assets/js/ie10-viewport-bug-workaround.js"></script> -->
+
+    </body>
+</html>

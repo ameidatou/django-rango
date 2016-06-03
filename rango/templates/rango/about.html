@@ -1,0 +1,25 @@
+{% extends 'rango/base.html' %}
+
+{% load staticfiles %}
+
+{% block block_title %}About{% endblock %}
+
+{% block body_block %}
+<h1>About</h1>
+
+<p>Visits: {{ visits }}</p>
+
+<img src="{% static 'rango/images/Penguins.jpg' %}" alt="Penguins image" /></br>
+
+<div id="msg">Hello</div>
+
+<button onClick="alert('You clicked the button using Javascript.');">
+    Click Me - I run Javascript
+</button>
+<button id="about-btn"> Click Me - I'm Javascript on Speed</button>
+
+<p>This is a example</p>
+
+<p>This is another example</p>
+
+{% endblock %}
