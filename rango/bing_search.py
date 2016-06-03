@@ -2,7 +2,7 @@ import json
 import urllib, urllib2
 from pprint import pprint as pp
 
-BING_API_KEY = 'mykeyhere'
+BING_API_KEY = 'my-key-here'
 
 def run_query(search_terms):
     # Specify the base
